@@ -37,7 +37,7 @@ const Student = mongoose.model("Students", studentSchema);
 
 async function createStudent() {
   const student = new Student({
-    name: "Suzie",
+    username: "Suzie",
     teacher: "Jane",
     completed: [0, 0, 0],
     dateCompleted: [0, 0, 0],
