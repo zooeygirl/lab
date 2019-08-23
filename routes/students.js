@@ -1,4 +1,4 @@
-const { Student, validate } = require("../models/student");
+const { Student, validate, validateExRating } = require("../models/student");
 const { User } = require("../models/user");
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
@@ -54,7 +54,7 @@ router.put("/:id", [auth, admin], async (req, res) => {
 });
 
 router.put("/exercises/:id", [auth], async (req, res) => {
-  const { error } = validate(req.body);
+  const { error } = validateExRating(req.body);
 
   if (error) return res.status(400).send(error.details[0].message);
 

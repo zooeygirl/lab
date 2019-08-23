@@ -76,6 +76,17 @@ function validateStudent(student) {
   return Joi.validate(student, schema);
 }
 
+function validateExRating(student) {
+  const schema = {
+    _id: Joi.string(),
+    exerciseRatings: Joi.object()
+  };
+
+  console.log(Joi.validate(student, schema));
+  return Joi.validate(student, schema);
+}
+
 exports.Student = Student;
 exports.validate = validateStudent;
+exports.validateExRating = validateExRating;
 exports.studentSchema = studentSchema.plugin(uniqueValidator);
