@@ -8,6 +8,7 @@ const exercises = require("../routes/exercises");
 
 module.exports = function(app) {
   app.use(express.json());
+  app.use(cors());
 
   app.use("/api/students", students);
   app.use("/api/users", users);

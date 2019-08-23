@@ -49,7 +49,7 @@ async function createStudent() {
   console.log(result);
 }
 
-createStudent();
+//createStudent();
 
 function validateStudent(student) {
   const schema = {
