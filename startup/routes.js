@@ -5,6 +5,7 @@ const zooey = require("../routes/zooey");
 const auth = require("../routes/auth");
 const teachers = require("../routes/teachers");
 const exercises = require("../routes/exercises");
+const cors = require("cors");
 
 module.exports = function(app) {
   app.use(express.json());
