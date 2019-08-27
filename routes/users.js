@@ -24,7 +24,8 @@ router.post("/", async (req, res) => {
   if (user) return res.status(400).send("User already registered.");
 
   user = new User({
-    username: req.body.username,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
     role: req.body.role,
     email: req.body.email,
     password: req.body.password,
@@ -57,7 +58,7 @@ router.post("/", async (req, res) => {
     res
       .header("x-auth-token", token)
       .header("access-control-expose-headers", "x-auth-token")
-      .send(_.pick(user, ["_id", "username", "email"]));
+      .send(_.pick(user, ["_id", "firstname", "lastname", "email"]));
   } catch (ex) {
     res.send(ex.errors);
     for (field in ex.errors) console.log(ex.errors[field].message);
@@ -71,7 +72,8 @@ router.put("/:id", async (req, res) => {
   const user = await User.findByIdAndUpdate(
     req.params.id,
     {
-      username: req.body.username,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
       role: req.body.role,
       email: req.body.email,
       password: req.body.password,

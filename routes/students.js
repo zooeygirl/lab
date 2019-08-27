@@ -16,7 +16,8 @@ router.post("/", auth, async (req, res) => {
   if (error) return res.status(400).send(error.details[0].message);
 
   const student = new Student({
-    username: req.body.username,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
     completed: req.body.completed,
     dateCompleted: req.body.dateCompleted,
     teacher: req.body.teacher,
@@ -38,7 +39,8 @@ router.put("/:id", [auth, admin], async (req, res) => {
   const student = await User.findByIdAndUpdate(
     req.params.id,
     {
-      username: req.body.username,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
       completed: req.body.completed,
       dateCompleted: req.body.dateCompleted,
       validatedBy: req.body.validatedBy,
@@ -54,7 +56,7 @@ router.put("/:id", [auth, admin], async (req, res) => {
 });
 
 router.put("/exercises/:id", [auth], async (req, res) => {
-  const { error } = validateExRating(req.body.select("-completed"));
+  const { error } = validateExRating(req.body);
 
   if (error) return res.status(400).send(error.details[0].message);
 

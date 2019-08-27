@@ -3,7 +3,14 @@ const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
 
 const studentSchema = mongoose.Schema({
-  username: {
+  firstname: {
+    type: String,
+    trim: true,
+    minlength: 1,
+    maxlength: 100,
+    required: true
+  },
+  lastname: {
     type: String,
     trim: true,
     minlength: 1,
@@ -37,7 +44,8 @@ const Student = mongoose.model("Students", studentSchema);
 
 async function createStudent() {
   const student = new Student({
-    username: "Suzie",
+    firstname: "Suzie",
+    lastname: "Lee",
     teacher: "Jane",
     completed: [0, 0, 0],
     dateCompleted: [0, 0, 0],
@@ -55,7 +63,11 @@ function validateStudent(student) {
   const schema = {
     //_id: Joi.objectId().required,
     _id: Joi.string(),
-    username: Joi.string()
+    firstname: Joi.string()
+      .min(2)
+      .max(50)
+      .required(),
+    lastname: Joi.string()
       .min(2)
       .max(50)
       .required(),
