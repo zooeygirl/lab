@@ -54,7 +54,7 @@ router.put("/:id", [auth, admin], async (req, res) => {
 });
 
 router.put("/exercises/:id", [auth], async (req, res) => {
-  const { error } = validateExRating(req.body);
+  const { error } = validateExRating(req.body.select("-completed"));
 
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -69,7 +69,7 @@ router.put("/exercises/:id", [auth], async (req, res) => {
   if (!student)
     return res.status(404).send("The student with the given ID was not found.");
 
-  res.send(student.select("-completed"));
+  res.send(student);
 });
 
 router.delete("/:id", [auth, admin], async (req, res) => {
