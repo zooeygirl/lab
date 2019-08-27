@@ -69,7 +69,7 @@ router.put("/exercises/:id", [auth], async (req, res) => {
   if (!student)
     return res.status(404).send("The student with the given ID was not found.");
 
-  res.send(student);
+  res.send(student.select("-completed"));
 });
 
 router.delete("/:id", [auth, admin], async (req, res) => {
