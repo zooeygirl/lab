@@ -86,7 +86,7 @@ function validateUser(user) {
 
     role: Joi.string().required(),
     password: Joi.string().required(),
-    adminPassword: Joi.string(),
+    adminPassword: Joi.string().allow(""),
     isAdmin: Joi.boolean(),
     teacher: Joi.string(),
     completed: Joi.array(),
