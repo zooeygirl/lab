@@ -10,7 +10,7 @@ const cors = require("cors");
 module.exports = function(app) {
   app.use(express.json());
 
-  var whitelist = ["https://dlstlab.herokuapp.com"];
+  var whitelist = ["https://dlstlab.herokuapp.com/*"];
   var corsOptions = {
     origin: function(origin, callback) {
       if (whitelist.indexOf(origin) !== -1) {
