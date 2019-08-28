@@ -9,7 +9,19 @@ const cors = require("cors");
 
 module.exports = function(app) {
   app.use(express.json());
-  app.use(cors());
+
+  var whitelist = ["https://dlstlab.herokuapp.com"];
+  var corsOptions = {
+    origin: function(origin, callback) {
+      if (whitelist.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    }
+  };
+
+  app.use(cors(corsOptions));
 
   app.use("/api/students", students);
   app.use("/api/users", users);
