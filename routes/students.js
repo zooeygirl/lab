@@ -1,3 +1,4 @@
+const _ = require("lodash");
 const { Student, validate, validateExRating } = require("../models/student");
 const { User } = require("../models/user");
 const auth = require("../middleware/auth");
@@ -71,7 +72,7 @@ router.put("/exercises/:id", [auth], async (req, res) => {
   if (!student)
     return res.status(404).send("The student with the given ID was not found.");
 
-  res.send(student);
+  res.send(_.pick(student, ["id", "exerciseRatings"]));
 });
 
 router.delete("/:id", [auth, admin], async (req, res) => {
