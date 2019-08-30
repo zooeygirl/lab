@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
         "completed",
         "dateCompleted",
         "validatedBy",
-        "id",
+        "_id",
         "teacher",
         "exerciseRatings"
       ])
@@ -52,7 +52,7 @@ router.put("/:id", [auth, admin], async (req, res) => {
   if (error) return res.status(400).send(error.details[0].message);
 
   const student = await User.findByIdAndUpdate(
-    req.params._id,
+    req.params.id,
     {
       firstname: req.body.firstname,
       lastname: req.body.lastname,
