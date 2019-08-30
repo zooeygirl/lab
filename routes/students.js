@@ -9,7 +9,8 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   const students = await User.find({ role: "Student" }).sort("name");
   res.send(
-    _.map(students, [
+    _.map(
+      students,
       "lastname",
       "firstname",
       "completed",
@@ -18,7 +19,7 @@ router.get("/", async (req, res) => {
       "id",
       "teacher",
       "exerciseRatings"
-    ])
+    )
   );
 });
 
