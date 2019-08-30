@@ -11,14 +11,16 @@ router.get("/", async (req, res) => {
   res.send(
     _.map(
       students,
-      "lastname",
-      "firstname",
-      "completed",
-      "dateCompleted",
-      "validatedBy",
-      "id",
-      "teacher",
-      "exerciseRatings"
+      _.partial(_.ary(_.pick, 8), _, [
+        "lastname",
+        "firstname",
+        "completed",
+        "dateCompleted",
+        "validatedBy",
+        "id",
+        "teacher",
+        "exerciseRatings"
+      ])
     )
   );
 });
