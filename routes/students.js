@@ -8,7 +8,18 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   const students = await User.find({ role: "Student" }).sort("name");
-  res.send(students);
+  res.send(
+    _.map(students, [
+      "lastname",
+      "firstname",
+      "completed",
+      "dateCompleted",
+      "validatedBy",
+      "id",
+      "teacher",
+      "exerciseRatings"
+    ])
+  );
 });
 
 router.post("/", auth, async (req, res) => {
