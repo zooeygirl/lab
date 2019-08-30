@@ -52,9 +52,8 @@ router.put("/:id", [auth, admin], async (req, res) => {
   if (error) return res.status(400).send(error.details[0].message);
 
   const student = await User.findByIdAndUpdate(
-    req.params.id,
+    req.params._id,
     {
-      id: req.body.id,
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       completed: req.body.completed,
