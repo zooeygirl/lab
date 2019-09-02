@@ -115,7 +115,9 @@ async function getAverageExerciseRating() {
     const exercises = Object.keys(studentRatings[0].exerciseRatings);
 
     for (i = 0; i < exercises.length; i++) {
-      const values = studentRatings.map(v => v.exerciseRatings[exercises[i]]);
+      const values = studentRatings.filter(
+        v => v.exerciseRatings[exercises[i] !== 0]
+      );
       const sum = values.reduce((a, b) => a + b);
       const count = values.length;
 
